@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Review {
 	@Id
 	@GeneratedValue
-	private int id;
+	private int reviewId;
 	@ManyToOne
 	private User user;
 	@ManyToOne
@@ -21,11 +21,12 @@ public class Review {
 	private int rating;
 	private String review;
 	private Date date;
-	public int getId() {
-		return id;
+	
+	public int getreviewId() {
+		return reviewId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int reviewId) {
+		this.reviewId = reviewId;
 	}
 	public User getUser() {
 		return user;

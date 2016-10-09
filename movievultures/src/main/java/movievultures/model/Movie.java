@@ -16,26 +16,26 @@ import javax.persistence.Table;
 public class Movie {
 	@Id
 	@GeneratedValue
-	private int id;
+	private int movieId;
 	private String title;
 	@OneToMany(mappedBy="movie")
 	private List<Review> reviews;
 	private String description;
 	private Date date;
-	private int eloRating;
+	private double eloRating;
 	@ManyToMany
 	@JoinTable(name="favorites",
-	joinColumns={@JoinColumn(name="id")},
+	joinColumns={@JoinColumn(name="movieId")},
 	inverseJoinColumns={@JoinColumn(name="username")})
 	private List<User>favoredBy;
 	@ManyToMany
 	@JoinTable(name="watchLater",
-	joinColumns={@JoinColumn(name="id")},
+	joinColumns={@JoinColumn(name="movieId")},
 	inverseJoinColumns={@JoinColumn(name="username")})
 	private List<User>watchQueue;
 	@ManyToMany
 	@JoinTable(name="recommendations",
-	joinColumns={@JoinColumn(name="id")},
+	joinColumns={@JoinColumn(name="movieId")},
 	inverseJoinColumns={@JoinColumn(name="username")})
 	private List<User>recommendedTo;
 	
@@ -51,11 +51,11 @@ public class Movie {
 	public void setWatchQueue(List<User> watchQueue) {
 		this.watchQueue = watchQueue;
 	}
-	public int getId() {
-		return id;
+	public int getmovieId() {
+		return movieId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setmovieId(int movieId) {
+		this.movieId = movieId;
 	}
 	public String getTitle() {
 		return title;
@@ -81,10 +81,10 @@ public class Movie {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getEloRating() {
+	public double getEloRating() {
 		return eloRating;
 	}
-	public void setEloRating(int eloRating) {
+	public void setEloRating(double eloRating) {
 		this.eloRating = eloRating;
 	}
 
