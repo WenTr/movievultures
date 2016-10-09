@@ -22,19 +22,18 @@ public class User {
 	@ManyToMany
 	@JoinTable(name="recommendations",
 	joinColumns={@JoinColumn(name="username")},
-	inverseJoinColumns={@JoinColumn(name="id")})
+	inverseJoinColumns={@JoinColumn(name="movieId")})
 	private List<Movie> recommendations;
 	@ManyToMany
 	@JoinTable(name="favorites",
 	joinColumns={@JoinColumn(name="username")},
-	inverseJoinColumns={@JoinColumn(name="id")})
+	inverseJoinColumns={@JoinColumn(name="movieId")})
 	private List<Movie> favorites;
 	@ManyToMany
 	@JoinTable(name="watchLater",
 	joinColumns={@JoinColumn(name="username")},
-	inverseJoinColumns={@JoinColumn(name="id")})
+	inverseJoinColumns={@JoinColumn(name="movieId")})
 	private List<Movie> watchLater;
-	
 	
 	public String getUsername() {
 		return username;
