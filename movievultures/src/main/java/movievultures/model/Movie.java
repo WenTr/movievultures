@@ -23,6 +23,7 @@ public class Movie {
 	private String description;
 	private Date date;
 	private double eloRating;
+	private int eloTimesRated;
 	@ManyToMany
 	@JoinTable(name="favorites",
 	joinColumns={@JoinColumn(name="movieId")},
@@ -86,6 +87,12 @@ public class Movie {
 	}
 	public void setEloRating(double eloRating) {
 		this.eloRating = eloRating;
+	}
+	public int getEloTimesRated() {
+		return eloTimesRated;
+	}
+	public void setEloTimesRated(int eloTimesRated) {
+		this.eloTimesRated = eloTimesRated;
 	}
 
 }
