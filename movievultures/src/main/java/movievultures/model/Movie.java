@@ -3,6 +3,10 @@ package movievultures.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,7 +22,9 @@ public class Movie {
 	@GeneratedValue
 	private int movieId;
 	private String title;
-	@OneToMany(mappedBy="movie")
+	
+	@OneToMany(mappedBy="movie",
+			cascade=CascadeType.ALL)
 	private List<Review> reviews;
 	private String description;
 	private Date date;
@@ -29,16 +35,26 @@ public class Movie {
 	joinColumns={@JoinColumn(name="movieId")},
 	inverseJoinColumns={@JoinColumn(name="username")})
 	private List<User>favoredBy;
-	@ManyToMany
+	
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="watchLater",
 	joinColumns={@JoinColumn(name="movieId")},
 	inverseJoinColumns={@JoinColumn(name="username")})
 	private List<User>watchQueue;
-	@ManyToMany
+	
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="recommendations",
 	joinColumns={@JoinColumn(name="movieId")},
 	inverseJoinColumns={@JoinColumn(name="username")})
 	private List<User>recommendedTo;
+	
+	@ElementCollection
+	@CollectionTable(
+			name="movie_genres",
+			joinColumns=@JoinColumn(name = "movieId")
+			)
+	@Column(name="genre")
+	List<String> genres;
 	
 	public List<User> getFavoredBy() {
 		return favoredBy;

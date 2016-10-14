@@ -2,7 +2,9 @@ package movievultures.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -14,22 +16,25 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
+	@GeneratedValue
+	int userId;
 	private String username;
 	private String password;
 	private String email;
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",
+			cascade=CascadeType.ALL)
 	private List<Review> reviewedMovies;
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="recommendations",
 	joinColumns={@JoinColumn(name="username")},
 	inverseJoinColumns={@JoinColumn(name="movieId")})
 	private List<Movie> recommendations;
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="favorites",
 	joinColumns={@JoinColumn(name="username")},
 	inverseJoinColumns={@JoinColumn(name="movieId")})
 	private List<Movie> favorites;
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="watchLater",
 	joinColumns={@JoinColumn(name="username")},
 	inverseJoinColumns={@JoinColumn(name="movieId")})
