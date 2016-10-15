@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -26,7 +27,6 @@ public class Movie {
 	@OneToMany(mappedBy="movie",
 			cascade=CascadeType.ALL)
 	private List<Review> reviews;
-	private String description;
 	private Date date;
 	private double eloRating;
 	
@@ -54,8 +54,63 @@ public class Movie {
 			joinColumns=@JoinColumn(name = "movieId")
 			)
 	@Column(name="genre")
-	List<String> genres;
+	private List<String> genres;
 	
+	@ElementCollection
+	@CollectionTable(
+			name="movie_directors",
+			joinColumns=@JoinColumn(name="movieId")
+			)
+	@Column(name="director")
+	private List<String> directors;
+	
+	@ElementCollection
+	@CollectionTable(
+			name="movie_cast",
+			joinColumns=@JoinColumn(name="movieId")
+			)
+	@Column(name="actor")
+	private List<String>actors;
+	
+	@Lob //http://www.concretepage.com/hibernate/lob-hibernate-annotation
+	private String plot;
+	
+	public int getMovieId() {
+		return movieId;
+	}
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
+	}
+	public List<User> getRecommendedTo() {
+		return recommendedTo;
+	}
+	public void setRecommendedTo(List<User> recommendedTo) {
+		this.recommendedTo = recommendedTo;
+	}
+	public List<String> getGenres() {
+		return genres;
+	}
+	public void setGenres(List<String> genres) {
+		this.genres = genres;
+	}
+	public List<String> getDirectors() {
+		return directors;
+	}
+	public void setDirectors(List<String> directors) {
+		this.directors = directors;
+	}
+	public List<String> getActors() {
+		return actors;
+	}
+	public void setActors(List<String> actors) {
+		this.actors = actors;
+	}
+	public String getPlot() {
+		return plot;
+	}
+	public void setPlot(String plot) {
+		this.plot = plot;
+	}
 	public List<User> getFavoredBy() {
 		return favoredBy;
 	}
@@ -86,12 +141,7 @@ public class Movie {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+
 	public Date getDate() {
 		return date;
 	}

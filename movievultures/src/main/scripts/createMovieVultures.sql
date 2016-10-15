@@ -5,6 +5,16 @@ create sequence hibernate_sequence start 1 increment 1;
         movieId int4 not null
     );
 
+    create table movie_cast (
+        movieId int4 not null,
+        actor varchar(255)
+    );
+
+    create table movie_directors (
+        movieId int4 not null,
+        director varchar(255)
+    );
+
     create table movie_genres (
         movieId int4 not null,
         genre varchar(255)
@@ -13,8 +23,8 @@ create sequence hibernate_sequence start 1 increment 1;
     create table movies (
         movieId int4 not null,
         date timestamp,
-        description varchar(255),
         eloRating float8 not null,
+        plot text,
         title varchar(255),
         primary key (movieId)
     );
@@ -47,15 +57,25 @@ create sequence hibernate_sequence start 1 increment 1;
         movieId int4 not null
     );
 
-    alter table favorites
+    alter table favorites 
         add constraint FKa3oceguw77uopk25jft7k408q 
-        foreign key (movieId)
+        foreign key (movieId) 
         references movies;
 
     alter table favorites 
-        add constraint FKgun9e0l2253lebhqp387fxq1m
+        add constraint FKgun9e0l2253lebhqp387fxq1m 
         foreign key (username) 
         references users;
+
+    alter table movie_cast 
+        add constraint FKkxueewcoqa0n9dfncqwuo9xuy 
+        foreign key (movieId) 
+        references movies;
+
+    alter table movie_directors 
+        add constraint FK8puh90w29yio5awsl64eh1nuk 
+        foreign key (movieId) 
+        references movies;
 
     alter table movie_genres 
         add constraint FKe09ck74qsi33na3rwp5k8pxwd 
@@ -79,12 +99,12 @@ create sequence hibernate_sequence start 1 increment 1;
 
     alter table reviews 
         add constraint FKnhfaav07nfun384llv7ipayhj 
-        foreign key (user_userId)
+        foreign key (user_userId) 
         references users;
 
     alter table watchLater 
         add constraint FK7xw9fn48nlav23nk8yaw7lhik 
-        foreign key (movieId)
+        foreign key (movieId) 
         references movies;
 
     alter table watchLater 
