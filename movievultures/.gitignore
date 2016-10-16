@@ -4,7 +4,7 @@
 !.gitignore
 
 #Mac OS X Hidden Files
-.DS_Store
+*.DS_Store
 
 #Eclipse specific
 /.project
