@@ -69,9 +69,9 @@ def readin_movies():
                     cursor.execute(queryGenres, genreData)
                     conn.commit()
             #scrape actors - top 5 in list
-            cast = movie['cast']
-            count = 3
             if 'cast' in movie.keys():
+                cast = movie['cast']
+                count = 3
                 for actor in cast[:count]:
                     #print "inserting an actor into movie_cast"
                     cast_data = (line[0], actor['name'])
