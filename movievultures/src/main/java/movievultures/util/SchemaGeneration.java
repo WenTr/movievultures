@@ -25,7 +25,7 @@ public class SchemaGeneration {
         properties.put(
             "javax.persistence.schema-generation.scripts.create-target",
             stringWriter );
-        Persistence.generateSchema( "springmvc", properties );
+        Persistence.generateSchema( "movievultures", properties );
 
         // If there is a command line argument, consider it the output file name
         BufferedWriter out = null;
