@@ -18,7 +18,7 @@ public class Review {
 	private User user;
 	@ManyToOne
 	private Movie movie;
-	private int rating;
+	private double rating;
 	private String review;
 	private Date date;
 	
@@ -40,7 +40,7 @@ public class Review {
 	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
 	public void setRating(int rating) {

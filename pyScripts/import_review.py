@@ -1,7 +1,6 @@
 import csv
 import psycopg2
 import sys
-import datetime
 
 ##############################
 # Import Reviews to DataBase
@@ -17,7 +16,7 @@ def main():
 		# conn.cursor will return a cursor object, you can use this cursor to perform queries
 		cursor = conn.cursor()
 		print "Connected!\n"
-		reviewFile = open("ml-latest-small/ratings.csv", 'rb')
+		reviewFile = open("ratings.csv", 'rb')
 		reader = csv.reader(reviewFile)
 		i = 1000000
 		for line in reader:
