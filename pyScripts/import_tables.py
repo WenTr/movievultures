@@ -55,24 +55,29 @@ def readin_movies():
             movie_data = (line[0], line[1], movie['year'], 0.0, movie['plot'])
             cursor.execute(query, movie_data)
             conn.commit()
+            print "scraping for movie: " + line[1]
             #scrape directors
-            for person in movie['director']:
-                director_data = (line[0], person['name'])
-                cursor.execute(queryDirectors, director_data)
-                conn.commit()
+            if 'director' in movie.keys():
+                for person in movie['director']:
+                    director_data = (line[0], person['name'])
+                    cursor.execute(queryDirectors, director_data)
+                    conn.commit()
             #scrape genres
-            for genre in movie['genres']:
-                genreData = (line[0], genre)
-                cursor.execute(queryGenres, genreData)
-                conn.commit()
+            if 'genre' in movie.keys():
+                for genre in movie['genres']:
+                    genreData = (line[0], genre)
+                    cursor.execute(queryGenres, genreData)
+                    conn.commit()
             #scrape actors - top 5 in list
             cast = movie['cast']
-            count = 5
-            for actor in cast[:count]:
-                #print "inserting an actor into movie_cast"
-                cast_data = (line[0], actor['name'])
-                cursor.execute(queryCast, cast_data)
-                conn.commit()
+            count = 3
+            if 'cast' in movie.keys():
+                for actor in cast[:count]:
+                    #print "inserting an actor into movie_cast"
+                    cast_data = (line[0], actor['name'])
+                    cursor.execute(queryCast, cast_data)
+                    conn.commit()
+  
     finally:
         movieFile.close()
         conn.close()
