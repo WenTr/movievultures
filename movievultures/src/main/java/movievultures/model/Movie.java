@@ -30,6 +30,8 @@ public class Movie {
 	private Date date;
 	private double eloRating;
 	private int eloTimesRated;
+	@Column(name="is_hidden", columnDefinition = "boolean default false", nullable=false)
+	private boolean hidden;
 	@ManyToMany
 	@JoinTable(name="favorites",
 	joinColumns={@JoinColumn(name="movieId")},
@@ -153,6 +155,12 @@ public class Movie {
 	}
 	public void setEloTimesRated(int eloTimesRated) {
 		this.eloTimesRated = eloTimesRated;
+	}
+	public boolean isHidden() {
+		return hidden;
+	}
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
 	}
 
 }
