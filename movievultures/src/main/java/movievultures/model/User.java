@@ -17,7 +17,7 @@ public class User {
 
 	@Id
 	@GeneratedValue
-	int userId;
+	private int userId;
 	private String username;
 	private String password;
 	private String email;
@@ -40,6 +40,12 @@ public class User {
 	inverseJoinColumns={@JoinColumn(name="movieId")})
 	private List<Movie> watchLater;
 	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public String getUsername() {
 		return username;
 	}
