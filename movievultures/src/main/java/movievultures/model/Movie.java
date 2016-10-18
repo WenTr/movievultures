@@ -123,12 +123,6 @@ public class Movie {
 	public void setWatchQueue(List<User> watchQueue) {
 		this.watchQueue = watchQueue;
 	}
-	public int getmovieId() {
-		return movieId;
-	}
-	public void setmovieId(int movieId) {
-		this.movieId = movieId;
-	}
 	public String getTitle() {
 		return title;
 	}
