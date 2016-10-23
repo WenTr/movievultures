@@ -17,6 +17,8 @@ public interface MovieDao {
 	
 	List<Movie> getMoviesByDirector(String director);
 	
+	List<Movie> getMoviesByGenre(String genre);
+	
 	Movie saveMovie(Movie movie);
 	
 }

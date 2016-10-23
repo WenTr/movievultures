@@ -8,9 +8,10 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import movievultures.model.Movie;
+import movievultures.model.dao.MovieDao;
 
 @Repository
-public class MovieDaoImpl {
+public class MovieDaoImpl implements MovieDao{
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -56,5 +57,11 @@ public class MovieDaoImpl {
 	
 	public Movie saveMovie(Movie movie) {
         return entityManager.merge( movie );
+	}
+
+	@Override
+	public List<Movie> getMoviesByGenre(String genre) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -74,7 +74,7 @@ public class Movie {
 	@Column(name="actor")
 	private List<String>actors;
 	
-	@Lob //http://www.concretepage.com/hibernate/lob-hibernate-annotation
+	@Column(columnDefinition = "text") //http://www.concretepage.com/hibernate/lob-hibernate-annotation
 	private String plot;
 	
 	public int getMovieId() {
